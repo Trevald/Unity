@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <title>Unity CSS</title>
+
+        <script
+            src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+            defer
+        ></script>
+
+        <link
+            href="./unity/layout.views.css"
+            type="text/css"
+            rel="stylesheet"
+        />
+        <style type="text/css">
+            li {
+                padding: 1rem;
+            }
+
+            .frame {
+                width: 80vw;
+                height: 50vh;
+
+                background-color: rgb(220, 240, 250);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .content {
+                line-height: 1;
+                margin: 0;
+                font-size: 1rem;
+
+                background-color: rgb(240, 180, 120);
+            }
+
+            .item {
+                margin: 0.5rem;
+            }
+
+            .view {
+                outline: none;
+            }
+
+            form,
+            form .view {
+                padding: 0.25rem;
+            }
+
+            .view:not(.frame) {
+                background-color: transparent !important;
+            }
+
+            label {
+                margin-bottom: 0.25rem;
+            }
+
+            .content p {
+                padding: 0.5rem;
+                margin: 0;
+            }
+
+            .content label {
+                font-size: 0.75rem;
+                margin: 0 0.5rem;
+                text-align: left;
+            }
+            .content select {
+                font-size: 0.75rem;
+                margin: 0.5rem;
+            }
+
+            dl {
+                padding: 0.5rem;
+                font-size: 1rem;
+                text-align: left;
+            }
+
+            dt {
+                display: inline-block;
+                margin: 0 0 1vh 0;
+                padding: 1vh;
+                font-weight: bold;
+            }
+
+            dd {
+                display: inline-block;
+                margin: 0 0 2vh 0;
+                padding: 1vh;
+            }
+        </style>
+    </head>
+    <body>
+        <div
+            x-data="{direction: 'vertical', alignHorizontal: 'left', alignVertical: 'top', distribution: 'packed', items: [
+            {
+                name: 'A',
+                horizontal: 'horizontal-hug-content',
+                vertical: 'vertical-hug-content'
+            },
+            {
+                 name: 'B',
+                horizontal: 'horizontal-hug-content',
+                vertical: 'vertical-hug-content'
+            },
+            {
+                 name: 'C',
+                horizontal: 'horizontal-hug-content',
+                vertical: 'vertical-hug-content'
+            }
+            ]}"
+        >
+            <form class="view horizontal" style="margin-bottom: 2rem">
+                <div class="view vertical">
+                    <label for="direction">Direction</label>
+                    <select id="direction" x-model="direction">
+                        <option value="horizontal">Horizontal</option>
+                        <option value="vertical">Vertical</option>
+                    </select>
+                </div>
+
+                <div class="view vertical">
+                    <label for="distribution">Distribution</label>
+                    <select id="distribution" x-model="distribution">
+                        <option value="packed">Packed</option>
+                        <option value="space-between">Space between</option>
+                    </select>
+                </div>
+
+                <div class="view vertical">
+                    <label for="align-horizontal">Align horizontal</label>
+                    <select id="align-horizontal" x-model="alignHorizontal">
+                        <option value="left">Left</option>
+                        <option value="center">Center</option>
+                        <option value="right">Right</option>
+                    </select>
+                </div>
+
+                <div class="view vertical">
+                    <label for="align-vertical">Align vertical</label>
+                    <select id="align-vertical" x-model="alignVertical">
+                        <option value="top">top</option>
+                        <option value="middle">Middle</option>
+                        <option value="bottom">Bottom</option>
+                    </select>
+                </div>
+            </form>
+
+            <div
+                class="frame view"
+                :class="`${direction} ${distribution} ${alignHorizontal} ${alignVertical}`"
+            >
+                <template x-for="item in items" :key="item">
+                    <div
+                        class="view vertical item"
+                        :class="`${item.horizontal} ${item.vertical}`"
+                    >
+                        <div class="content">
+                            <p x-text="item.name"></p>
+                            <div class="view horizontal">
+                                <div class="view vertical">
+                                    <label for="`resize-x-${item.name}`"
+                                        >Horizontal</label
+                                    >
+                                    <select
+                                        id="`resize-x-${item.name}`"
+                                        x-model="item.horizontal"
+                                    >
+                                        <option
+                                            value="horizontal-fill-container"
+                                        >
+                                            Fill container
+                                        </option>
+                                        <option value="horizontal-hug-content">
+                                            Hug content
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="view vertical">
+                                    <label for="`resize-y-${item.name}`"
+                                        >Vertical</label
+                                    >
+                                    <select
+                                        for="`resize-y-${item.name}`"
+                                        x-model="item.vertical"
+                                    >
+                                        <option value="vertical-fill-container">
+                                            Fill container
+                                        </option>
+                                        <option value="vertical-hug-content">
+                                            Hug content
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <h2>Scrolling</h2>
+            <div
+                class="frame view"
+                :class="`${direction} ${distribution} ${alignHorizontal} ${alignVertical}`"
+            >
+                <div
+                    class="item view vertical horizontal-hug-content vertical-hug-content"
+                >
+                    <div class="content">
+                        <dl>
+                            <dt>Horizontal:</dt>
+                            <dd>Hug content.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Hug content</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div
+                    class="item view vertical horizontal-fill-container vertical-fill-container"
+                >
+                    <div class="content">
+                        <dl>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                            <dt>Horizontal:</dt>
+                            <dd>Fill container.</dd>
+                            <dt>Vertical:</dt>
+                            <dd>Fill container</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

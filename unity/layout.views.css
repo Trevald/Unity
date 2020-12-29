@@ -1,0 +1,190 @@
+/*
+ * Base
+ */
+
+.view {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+
+    box-sizing: border-box;
+}
+
+.view:not(.horizontal, .vertical) {
+    background-color: red;
+}
+
+.view {
+    background-color: rgba(150, 180, 234, 0.2);
+    outline: 2px dotted rgba(0, 0, 150, 0.6);
+    outline-offset: -2px;
+}
+
+.view:nth-child(odd) {
+    outline-color: rgba(200, 100, 0, 0.6);
+}
+
+/*
+ * WRAPPERS
+ */
+
+body.view {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    width: 100vw;
+    height: 100vh;
+}
+
+/*
+ * Direction
+ */
+
+.view.horizontal {
+    flex-direction: row;
+}
+
+.view.vertical {
+    flex-direction: column;
+}
+
+/*
+ * Distribution
+ */
+
+.view.space-between {
+    justify-content: space-between;
+}
+
+.view.packed {
+    justify-content: flex-start;
+}
+
+/*
+ * Alignment
+ */
+
+.view.horizontal:not(.space-between).left,
+.view.vertical:not(.space-between).top {
+    justify-content: flex-start;
+}
+
+.view.horizontal:not(.space-between).center,
+.view.vertical:not(.space-between).middle {
+    justify-content: center;
+}
+
+.view.horizontal:not(.space-between).right,
+.view.vertical:not(.space-between).bottom {
+    justify-content: flex-end;
+}
+
+.view.horizontal.top,
+.view.vertical.left {
+    align-items: flex-start;
+}
+
+.view.horizontal.middle,
+.view.vertical.center {
+    align-items: center;
+}
+
+.view.horizontal.bottom,
+.view.vertical.right {
+    align-items: flex-end;
+}
+
+/*
+ * Resizing : Hug content
+ */
+
+.view.horizontal > .horizontal-hug-content {
+    flex: 0 1 auto;
+}
+
+.view.vertical > .horizontal-hug-content {
+    align-self: auto;
+}
+
+.view.horizontal > .vertical-hug-content {
+    flex: 0 1 auto;
+}
+
+.view.vertical > .vertical-hug-content {
+    align-self: auto;
+}
+
+/*
+ * Resizing : Fill container
+ */
+
+.view.horizontal > .horizontal-fill-container {
+    flex: 1 1 auto;
+}
+
+.view.vertical > .horizontal-fill-container {
+    align-self: stretch;
+}
+
+.view.horizontal > .vertical-fill-container {
+    align-self: stretch;
+}
+
+.view.vertical > .vertical-fill-container {
+    flex: 1 1 auto;
+}
+
+/*
+ * Sizes
+ */
+
+.view > .size-2 {
+    flex-basis: calc(100% / (12 / 2));
+    min-width: calc(100% / (12 / 2));
+}
+
+.view > .size-4 {
+    flex-basis: calc(100% / (12 / 4));
+    min-width: calc(100% / (12 / 4));
+}
+
+.view > .size-6 {
+    flex-basis: calc(100% / (12 / 6));
+    min-width: calc(100% / (12 / 6));
+}
+
+.view > .size-8 {
+    flex-basis: calc(100% / (12 / 8));
+    min-width: calc(100% / (12 / 8));
+}
+
+.view > .size-10 {
+    flex-basis: calc(100% / (12 / 10));
+    min-width: calc(100% / (12 / 10));
+}
+
+.view > .size-12 {
+    flex-basis: calc(100% / (12 / 12));
+    min-width: calc(100% / (12 / 12));
+}
+
+/*
+ * Scrolling
+ */
+
+.view .content {
+    flex: 1 1 auto;
+    display: block;
+    width: 100%;
+}
+
+.view.vertical .vertical-fill-container .content {
+    height: 0;
+    overflow-y: auto;
+}
+
+.view.horizontal .horizontal-fill-container .content {
+    overflow-x: auto;
+}

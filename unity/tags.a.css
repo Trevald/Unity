@@ -1,0 +1,36 @@
+/*
+ filter: brightness(120%) hue-rotate(2deg);
+*/
+
+a:not(.no-style) {
+    padding: calc(var(--unit) * 0.5);
+    outline-offset: calc(var(--unit) * 0);
+    transition: all var(--transition-delay-fast) var(--transition-easing);
+}
+
+a:link,
+a:visited {
+    color: var(--color-action, aqua);
+    text-decoration: underline;
+}
+
+a.is-muted,
+a.is-visited:visited {
+    color: var(--color-action-muted);
+    text-decoration: underline;
+}
+
+a.is-focus,
+a:focus {
+    color: var(--color-action-focus);
+}
+
+a.is-hover,
+a:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+a.is-active,
+a:active {
+    color: var(--color-action-active);
+}

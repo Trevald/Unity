@@ -1,0 +1,14 @@
+:root {
+    --_color-bg-s2: 20, 17% 0%;
+    --_color-bg-s1: 20, 17%, 7%;
+    --_color-bg: 22, 15%, 14%;
+    --_color-bg-a1: 28, 12%, 22%;
+    --_color-bg-a2: 34, 10%, 31%;
+    --_color-bg-a3: 40, 9%, 39%;
+
+    --_color-fg-default: 5, 68%, 87%;
+
+    --_color-action: 228, 48%, 39%;
+
+    --_color-link: 199, 94%, 67%;
+}

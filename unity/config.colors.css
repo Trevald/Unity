@@ -1,0 +1,15 @@
+:root {
+    --color-bg-default: hsl(var(--_color-bg-default));
+
+    --color-bg-s2: hsl(var(--_color-bg-s2: 20, 17% 0%));
+    --color-bg-s1: hsl(var(--_color-bg-s1));
+    --color-bg: hsl(var(--_color-bg));
+    --color-bg-a1: hsl(var(--_color-bg-a1));
+    --color-bg-a2: hsl(var(--_color-bg-a2));
+    --color-bg-a3: hsl(var(--_color-bg-a3));
+
+    --color-fg-default: hsl(var(--_color-fg-default));
+
+    --color-action: hsl(var(--_color-action));
+    --color-link: hsl(var(--_color-link));
+}

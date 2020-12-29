@@ -1,0 +1,17 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background-color: var(--color-bg, white);
+    color: var(--color-fg-default, black);
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
